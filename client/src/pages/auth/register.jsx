@@ -24,11 +24,14 @@ function AuthRegister() {
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,
-          message: "You can now login to your account",
-          type: "success",
         })
         navigate("/auth/login")
-      };
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        })
+      }
     });
   }
 
