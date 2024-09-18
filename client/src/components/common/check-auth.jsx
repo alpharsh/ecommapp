@@ -17,7 +17,7 @@ function CheckAuth({ isAuthenticated, user, children }) {
   if (isAuthenticated && (location.pathname.includes("/login") || location.pathname.includes("/register"))) {
     if(user.role === "admin") {
       return <Navigate to="/admin/dashboard" />;
-    } else {      k
+    } else {
       return <Navigate to="/shop/home" />;
     }
   }
