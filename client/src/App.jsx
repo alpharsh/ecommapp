@@ -19,6 +19,8 @@ import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkAuth } from "./store/authSlice";
+import { Skeleton } from "@/components/ui/skeleton"
+
 
 function App() {
 
@@ -29,7 +31,8 @@ function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  if(isLoading) return <div>Loading...</div>;
+  if(isLoading) return <Skeleton className="w-[800px] h-[600px]" />
+
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
