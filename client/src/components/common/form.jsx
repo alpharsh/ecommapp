@@ -1,7 +1,12 @@
-import { Label } from "@radix-ui/react-label";
-import React from "react";
 import { Input } from "../ui/input";
-import { Select, SelectContent, SelectValue } from "@radix-ui/react-select";
+import { Label } from "../ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 
@@ -11,6 +16,7 @@ function CommonForm({
   setFormData,
   onSubmit,
   buttonText,
+  isBtnDisabled,
 }) {
   function renderInputsByComponentType(getControlItem) {
     let element = null;
@@ -33,16 +39,21 @@ function CommonForm({
             }
           />
         );
-        break;
 
+        break;
       case "select":
         element = (
-          <Select onValueChange={(value => setFormData({
-            ...formData,
-            [getControlItem.name]: value
-          }))} value={value}>
-            <SelectTrigger className="w-full ">
-              <SelectValue placeholder={getControlItem.placeholder} />
+          <Select
+            onValueChange={(value) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: value,
+              })
+            }
+            value={value}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder={getControlItem.label} />
             </SelectTrigger>
             <SelectContent>
               {getControlItem.options && getControlItem.options.length > 0
@@ -55,8 +66,8 @@ function CommonForm({
             </SelectContent>
           </Select>
         );
-        break;
 
+        break;
       case "textarea":
         element = (
           <Textarea
@@ -64,8 +75,15 @@ function CommonForm({
             placeholder={getControlItem.placeholder}
             id={getControlItem.id}
             value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
           />
         );
+
         break;
 
       default:
@@ -94,13 +112,13 @@ function CommonForm({
     <form onSubmit={onSubmit}>
       <div className="flex flex-col gap-3">
         {formControls.map((controlItem) => (
-          <div key={controlItem.name} className="grid w-full gap-1.5">
+          <div className="grid w-full gap-1.5" key={controlItem.name}>
             <Label className="mb-1">{controlItem.label}</Label>
             {renderInputsByComponentType(controlItem)}
           </div>
         ))}
       </div>
-      <Button type="submit" className="mt-2 w-full">
+      <Button disabled={isBtnDisabled} type="submit" className="mt-2 w-full">
         {buttonText || "Submit"}
       </Button>
     </form>
