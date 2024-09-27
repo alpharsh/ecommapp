@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const authRoutes = require("./routes/auth/auth-routes");
-const adminProductsRouter = require("./routes/admin/productsRoutes");
+const adminProductsRouter = require("./routes/admin/products-routes");
 
 // Connect to MongoDB
 mongoose

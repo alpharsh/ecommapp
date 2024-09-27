@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { FileIcon, UploadCloudIcon, XIcon } from "lucide-react";
+import { Skeleton } from "../ui/skeleton";
 
 function ProductImageUpload({
   imageFile,
   setImageFile,
+  imageLoadingState,
   uploadedImageUrl,
   setUploadedImageUrl,
   setImageLoadingState,
@@ -33,7 +35,7 @@ function ProductImageUpload({
     }
   }
 
-  async function uploadFileToCloudinary() {
+  async function uploadImageToCloudinary() {
     setImageLoadingState(true);
     const data = new FormData();
     data.append("my_file", imageFile);
@@ -49,7 +51,7 @@ function ProductImageUpload({
   }
 
   useEffect(() => {
-    if (imageFile !== null) uploadFileToCloudinary();
+    if (imageFile !== null) uploadImageToCloudinary();
   }, [imageFile]);
 
   return (
@@ -75,6 +77,8 @@ function ProductImageUpload({
             <UploadCloudIcon className="w-10  h-10 text-muted-foreground mb-2 " />
             <span className="text-sm">Click to Upload</span>
           </Label>
+        ) : imageLoadingState ? (
+          <Skeleton className='h-10 bg-gray-200' />
         ) : (
           <div className="flex items-center justify-between">
             <div className="flex items-center">
