@@ -67,17 +67,19 @@ const AdminProductsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAllProducts.pending, (state) => {
+    builder
+      .addCase(fetchAllProducts.pending, (state) => {
         state.isLoading = true;
-    }).addCase(fetchAllProducts.fulfilled, (state, action) => {
+      })
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.products = action.payload.data;
-    }).addCase(fetchAllProducts.rejected, (state, action) => {
+        state.productList = action.payload.data;
+      })
+      .addCase(fetchAllProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.products = [];
-    })
+        state.productList = [];
+      });
   },
 });
-
 
 export default AdminProductsSlice.reducer;
