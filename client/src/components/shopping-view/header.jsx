@@ -18,9 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
-// import UserCartWrapper from "./cart-wrapper";
+import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
-// import { fetchCartItems } from "@/store/shop/cart-slice";
+import { fetchCartItems } from "@/store/shop/cartSlice";
 import { Label } from "../ui/label";
 import { logoutUser } from "@/store/authSlice";
 

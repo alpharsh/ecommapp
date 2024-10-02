@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/config";
 import { useToast } from "@/hooks/use-toast";
-import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
-// import {
-//   fetchAllFilteredProducts,
-//   fetchProductDetails,
-// } from "@/store/shop/products-slice";
+import { addToCart, fetchCartItems } from "@/store/shop/cartSlice";
+import {
+  fetchAllFilteredProducts,
+  fetchProductDetails,
+} from "@/store/shop/productsSlice";
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
