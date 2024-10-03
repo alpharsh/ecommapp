@@ -151,7 +151,7 @@ export const addProductFormElements = [
     nike: "Nike",
     adidas: "Adidas",
     puma: "Puma",
-    levi: "Levi",
+    levi: "Levi's",
     zara: "Zara",
     "h&m": "H&M",
   };
