@@ -22,7 +22,7 @@ import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cartSlice";
 import { Label } from "../ui/label";
-import { logoutUser } from "@/store/authSlice";
+import { logoutUser, resetTokenAndCredentials } from "@/store/authSlice";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -72,7 +72,10 @@ function HeaderRightContent() {
   const dispatch = useDispatch();
 
   function handleLogout() {
-    dispatch(logoutUser());
+    // dispatch(logoutUser());
+    dispatch(resetTokenAndCredentials());
+    sessionStorage.clear();
+    navigate('/auth/login');
   }
 
   useEffect(() => {
