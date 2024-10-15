@@ -16,7 +16,7 @@ eCommerce is a full-stack web application built using the MERN (MongoDB, Express
 - **Order Tracking:** Users can track the status of their orders post-purchase.
 
 ## Tech Stack
-- **Frontend:** React.js, Redux for state management, Bootstrap for responsive UI
+- **Frontend:** React.js, Redux for state management, Shadcn for responsive UI
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Payment Integration:** PayPal API
