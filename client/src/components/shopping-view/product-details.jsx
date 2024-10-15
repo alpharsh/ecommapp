@@ -24,8 +24,6 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const { toast } = useToast();
 
   function handleRatingChange(getRating) {
-    console.log(getRating, "getRating");
-
     setRating(getRating);
   }
 
@@ -96,82 +94,76 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     if (productDetails !== null) dispatch(getReviews(productDetails?._id));
   }, [productDetails]);
 
-  console.log(reviews, "reviews");
-
   const averageReview =
     reviews && reviews.length > 0
-      ? reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /
-        reviews.length
+      ? reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) / reviews.length
       : 0;
 
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
-      <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
+      <DialogContent className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
+        {/* Product Image Section */}
         <div className="relative overflow-hidden rounded-lg">
           <img
             src={productDetails?.image}
             alt={productDetails?.title}
-            width={600}
-            height={600}
-            className="aspect-square w-full object-cover"
+            className="w-full object-cover"
           />
         </div>
-        <div className="">
-          <div>
-            <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1>
-            <p className="text-muted-foreground text-2xl mb-5 mt-4">
-              {productDetails?.description}
-            </p>
-          </div>
+
+        {/* Product Details Section */}
+        <div>
+          <h1 className="text-xl font-bold sm:text-3xl">{productDetails?.title}</h1>
+          <p className="text-muted-foreground text-lg sm:text-2xl mb-4 mt-2 sm:mt-4">
+            {productDetails?.description}
+          </p>
+
+          {/* Pricing Section */}
           <div className="flex items-center justify-between">
             <p
-              className={`text-3xl font-bold text-primary ${
+              className={`text-xl sm:text-3xl font-bold text-primary ${
                 productDetails?.salePrice > 0 ? "line-through" : ""
               }`}
             >
               ${productDetails?.price}
             </p>
             {productDetails?.salePrice > 0 ? (
-              <p className="text-2xl font-bold text-muted-foreground">
+              <p className="text-lg sm:text-2xl font-bold text-muted-foreground">
                 ${productDetails?.salePrice}
               </p>
             ) : null}
           </div>
+
+          {/* Review Section */}
           <div className="flex items-center gap-2 mt-2">
-            <div className="flex items-center gap-0.5">
-              <StarRatingComponent rating={averageReview} />
-            </div>
-            <span className="text-muted-foreground">
-              ({averageReview.toFixed(2)})
-            </span>
+            <StarRatingComponent rating={averageReview} />
+            <span className="text-muted-foreground">({averageReview.toFixed(2)})</span>
           </div>
-          <div className="mt-5 mb-5">
+
+          {/* Add to Cart Section */}
+          <div className="mt-4 sm:mt-5 mb-4 sm:mb-5">
             {productDetails?.totalStock === 0 ? (
-              <Button className="w-full opacity-60 cursor-not-allowed">
-                Out of Stock
-              </Button>
+              <Button className="w-full opacity-60 cursor-not-allowed">Out of Stock</Button>
             ) : (
               <Button
                 className="w-full"
-                onClick={() =>
-                  handleAddToCart(
-                    productDetails?._id,
-                    productDetails?.totalStock
-                  )
-                }
+                onClick={() => handleAddToCart(productDetails?._id, productDetails?.totalStock)}
               >
                 Add to Cart
               </Button>
             )}
           </div>
+
           <Separator />
+
+          {/* Reviews Section */}
           <div className="max-h-[300px] overflow-auto">
-            <h2 className="text-xl font-bold mb-4">Reviews</h2>
+            <h2 className="text-lg sm:text-xl font-bold mb-4">Reviews</h2>
             <div className="grid gap-6">
               {reviews && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
-                  <div className="flex gap-4">
-                    <Avatar className="w-10 h-10 border">
+                  <div className="flex gap-4" key={reviewItem.userId}>
+                    <Avatar className="w-8 h-8 sm:w-10 sm:h-10 border">
                       <AvatarFallback>
                         {reviewItem?.userName[0].toUpperCase()}
                       </AvatarFallback>
@@ -183,9 +175,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                       <div className="flex items-center gap-0.5">
                         <StarRatingComponent rating={reviewItem?.reviewValue} />
                       </div>
-                      <p className="text-muted-foreground">
-                        {reviewItem.reviewMessage}
-                      </p>
+                      <p className="text-muted-foreground">{reviewItem.reviewMessage}</p>
                     </div>
                   </div>
                 ))
@@ -193,13 +183,12 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 <h1>No Reviews</h1>
               )}
             </div>
-            <div className="mt-10 flex-col flex gap-2">
+
+            {/* Add Review Section */}
+            <div className="mt-8 flex-col flex gap-2">
               <Label>Write a review</Label>
               <div className="flex gap-1">
-                <StarRatingComponent
-                  rating={rating}
-                  handleRatingChange={handleRatingChange}
-                />
+                <StarRatingComponent rating={rating} handleRatingChange={handleRatingChange} />
               </div>
               <Input
                 name="reviewMsg"
@@ -207,10 +196,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 onChange={(event) => setReviewMsg(event.target.value)}
                 placeholder="Write a review..."
               />
-              <Button
-                onClick={handleAddReview}
-                disabled={reviewMsg.trim() === ""}
-              >
+              <Button onClick={handleAddReview} disabled={reviewMsg.trim() === ""}>
                 Submit
               </Button>
             </div>
@@ -220,5 +206,8 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     </Dialog>
   );
 }
+
+
+
 
 export default ProductDetailsDialog;

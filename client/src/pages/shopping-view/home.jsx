@@ -55,7 +55,6 @@ function ShoppingHome() {
     { id: 1, image: "/banner-1.webp" },
     { id: 2, image: "/banner-2.webp" },
     { id: 3, image: "/banner-3.webp" },
-    { id: 4, image: "/banner-4.webp" },
   ];
 
   useEffect(() => {
