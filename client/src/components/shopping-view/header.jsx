@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog } from "lucide-react";
+import { LogOut, Menu, ShoppingCart, UserCog, ShoppingBag } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -142,7 +142,7 @@ function ShoppingHeader() {
     <header className="top-0 fixed z-40 w-full border-b bg-white bg-opacity-40 backdrop-blur-2xl">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <HousePlug className="h-6 w-6" />
+          <ShoppingBag className="h-6 w-6"/>
           <span className="font-bold">Ecommerce</span>
         </Link>
         <Sheet>

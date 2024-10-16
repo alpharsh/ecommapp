@@ -54,10 +54,10 @@ function ShoppingHome() {
   const featureImageList = [
     { id: 1, image: "/banner-1.webp" },
     { id: 2, image: "/banner-2.webp" },
-    { id: 3, image: "/banner-3.webp" },
-    { id: 4, image: "/banner-4.png" },
-    { id: 5, image: "/banner-5.png" },
-    { id: 6, image: "/banner-6.png" },
+    // { id: 3, image: "/banner-3.webp" },
+    { id: 4, image: "/banner-4.svg" },
+    { id: 5, image: "/banner-5.svg" },
+    { id: 6, image: "/banner-6.svg" },
   ];
 
   useEffect(() => {
