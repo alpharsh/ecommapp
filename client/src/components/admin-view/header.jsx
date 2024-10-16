@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import { logoutUser, resetTokenAndCredentials } from "@/store/authSlice";
 import { useNavigate } from "react-router-dom";
+import { ModeToggle } from "../mode-toggle";
 
 function AdminHeader({ setOpen }) {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function AdminHeader({ setOpen }) {
         <AlignJustify />
         <span className="sr-only">Toggle Menu</span>
       </Button>
+      <ModeToggle />
       <div className="flex flex-1 justify-end">
         <Button
           onClick={handleLogout}

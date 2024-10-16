@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cartSlice";
 import { Label } from "../ui/label";
 import { logoutUser, resetTokenAndCredentials } from "@/store/authSlice";
+import { ModeToggle } from "../mode-toggle";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function MenuItems() {
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <Label
           onClick={() => handleNavigate(menuItem)}
-          className="text-sm font-medium cursor-pointer"
+          className="text-sm font-bold cursor-pointer"
           key={menuItem.id}
         >
           {menuItem.label}
@@ -75,7 +76,7 @@ function HeaderRightContent() {
     // dispatch(logoutUser());
     dispatch(resetTokenAndCredentials());
     sessionStorage.clear();
-    navigate('/auth/login');
+    navigate("/auth/login");
   }
 
   useEffect(() => {
@@ -86,6 +87,7 @@ function HeaderRightContent() {
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+      <ModeToggle />
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}
@@ -139,11 +141,11 @@ function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
-    <header className="top-0 fixed z-40 w-full border-b bg-white bg-opacity-40 backdrop-blur-2xl">
+    <header className="top-0 fixed z-40 w-full border-b bg-white dark:bg-slate-900/50 bg-opacity-40 backdrop-blur-2xl">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <ShoppingBag className="h-6 w-6"/>
-          <span className="font-bold">Ecommerce</span>
+          <ShoppingBag className="h-6 w-6" />
+          <span className="font-bold">Shopify</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
