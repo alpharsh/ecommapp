@@ -29,8 +29,15 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: process.env.CLIENT_BASE_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: (origin, callback) => {
+      const allowedOrigins = process.env.CLIENT_BASE_URL.split(",");
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
       "Authorization",
@@ -41,6 +48,9 @@ app.use(
     credentials: true,
   })
 );
+
+app.options("*", cors()); // handles preflight requests
+
 
 app.use(cookieParser());
 app.use(express.json());
