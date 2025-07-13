@@ -52,12 +52,9 @@ function ShoppingHome() {
   // const { featureImageList } = useSelector((state) => state.commonFeature);
 
   const featureImageList = [
-    { id: 1, image: "/banner-1.webp" },
-    { id: 2, image: "/banner-2.webp" },
-    // { id: 3, image: "/banner-3.webp" },
-    { id: 4, image: "/banner-4.svg" },
-    { id: 5, image: "/banner-5.svg" },
-    { id: 6, image: "/banner-6.svg" },
+    { id: 1, image: "/banner-8.png" },
+    { id: 2, image: "/banner-9.png" },
+    { id: 3, image: "/banner-7.png" },
   ];
 
   useEffect(() => {
@@ -198,7 +195,7 @@ function ShoppingHome() {
         </div>
       </section>
 
-      <section className="py-12 bg-gray-50 dark:bg-transparent">
+      {/* <section className="py-12 bg-gray-50 dark:bg-transparent">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -215,7 +212,7 @@ function ShoppingHome() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="py-12">
         <div className="container md:w-4/5 w-[90%] mx-auto px-4">

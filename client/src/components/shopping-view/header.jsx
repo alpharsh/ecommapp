@@ -144,8 +144,12 @@ function ShoppingHeader() {
     <header className="top-0 fixed z-40 w-full border-b bg-white dark:bg-slate-900/50 bg-opacity-40 backdrop-blur-2xl">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
-          <ShoppingBag className="h-6 w-6" />
-          <span className="font-bold">Shopify</span>
+          <img
+            src="/logo.jpg"
+            alt="Mahisterpieces Logo"
+            className="h-9 w-9 rounded-sm object-contain"
+          />
+          <span className="font-bold">Mahisterpieces</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>
